@@ -1,6 +1,6 @@
-# ⚖️ Pipeline de ETL Jurídico - Réplica PGFN
+# ⚖️ Pipeline de ETL Jurídico
 
-Este projeto reproduz a arquitetura de Engenharia de Dados utilizada na **Procuradoria-Geral da Fazenda Nacional (PGFN)** para automação de relatórios gerenciais e business intelligence.
+Este projeto reproduz a arquitetura de Engenharia de Dados utilizada em uma **Procuradoria** para automação de relatórios gerenciais e Business Intelligence.
 
 O pipeline processa dados brutos de processos judiciais (simulados), aplica regras de negócio complexas (limpeza de valores, padronização de órgãos, regex) e exporta tabelas otimizadas para dashboards.
 
@@ -14,16 +14,17 @@ O pipeline processa dados brutos de processos judiciais (simulados), aplica regr
 
 1. **Clone o repositório**
    ```bash
-   git clone [https://github.com/vini-gm/replica-pipeline_pgfn]
-   cd replica-pipeline_pgfn
-   
+   git clone [https://github.com/vini-gm/pipeline-etl-juridico-replica-v1.git]
+   cd pipeline-etl-juridico-replica-v1.git
+   ```
 2. **Gere os dados simulados (Mock)**
    ```bash
     python gerador_mock.py
+   ```
 3. **Rode o Pipeline de ETL**
    ```bash
    python pipeline_etl.py
-   
+   ```
 ## 📊 Resultados
 O script processa os dados e gera na pasta `output_relatorios/`\
 O pipeline transforma os dados brutos em um modelo otimizado para ferramentas de BI (Looker Studio/Power BI), seguindo princípios de **Modelagem Dimensional (Star Schema)**.
