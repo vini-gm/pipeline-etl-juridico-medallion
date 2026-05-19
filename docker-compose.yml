@@ -1,0 +1,6 @@
+services:
+  etl-juridico:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs

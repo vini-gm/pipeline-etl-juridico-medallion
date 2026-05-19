@@ -4,3 +4,7 @@ __pycache__/
 .venv/
 env/
 .idea
+
+data/bronze/
+data/silver/
+data/gold/
