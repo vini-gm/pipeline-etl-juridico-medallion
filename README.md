@@ -56,7 +56,7 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
    ```bash
    pip install -r requirements.txt
    ```
-3. **Execução Local (sem Docker**
+3. **Execução Local (Sem Docker)**:
    - **Gere os dados simulados (Mock)**
      ```bash
       python src/gerador_mock.py
@@ -65,7 +65,7 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
      ```bash
       python src/pipeline_etl.py
      ```
-4. Execução Isolada (Com Docker):
+4. **Execução Isolada (Com Docker)**:
     ```bash 
     docker compose up --build  
     ```
@@ -113,8 +113,8 @@ pipeline-juridico-v1/
 │   ├── load.py              # Camada de Carga (Persistência multi-formato agnóstica de estado)
 │   ├── schemas.py           # Definição dos contratos de dados (Data Quality)
 │   ├── gerador_mock.py      # Geração dos dados sintéticos (Bronze)
-│   └── pipeline.py           # Pipeline ETL (Bronze → Silver → Gold)
-├── tests/                        # Testes unitários
+│   └── pipeline.py          # Pipeline ETL (Bronze → Silver → Gold)
+├── tests/                   # Testes unitários
 │   └── test_pipeline.py
 ├── data/                         # Camadas de dados (geradas, não versionadas exceto referencias)
 │   ├── referencias/              # Domínios estáticos (versionados)
@@ -133,7 +133,7 @@ pipeline-juridico-v1/
 │       └── performance_procurador.csv / .parquet
 ├── logs/                         # Logs de execução (gerados, persistidos via volume)
 │   └── pipeline.log
-├── images/                       # Screenshots do dashboard (versionados)
+├── images/                       # Prints do dashboard (versionados)
 │   ├── grafico-processos-diários.png
 │   ├── grafico-classes-triadas.png
 │   ├── grafico-polo-processual.png
