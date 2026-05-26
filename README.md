@@ -17,9 +17,7 @@
 ## 📋 Visão Geral
 
 Este projeto foi desenvolvido sob princípios Engenharia de Software (SOLID) para demonstrar maturidade técnica e habilidades em **Engenharia de Dados** na construção de pipelines de dados aplicadas ao setor jurídico.  
- partir de dados sintéticos que reproduzem a complexidade e a "sujeira" de relatórios jurídicos reais, o pipeline executa de forma isolada: 
-
-A partir de dados sintéticos que reproduzem a estrutura real de processos de uma procuradoria, o pipeline realiza:
+A partir de dados sintéticos que reproduzem a complexidade e a "sujeira" de relatórios jurídicos reais, o pipeline executa de forma isolada:
 
 - Ingestão e Validação Contratual (**Bronze**): Carga dos dados e validação de tipos/restrições em runtime com **Pandera**.
 - Limpeza, padronização e persistência (**Silver**): Tratamento de quebras de linha textuais, conversão in-place de moedas, tratamento de nulos e salvamento em formato colunar parquet.
@@ -74,7 +72,7 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
 ## 🎯 Objetivos
 O pipeline foi desenhado para responder perguntas gerenciais de uma Procuradoria:
 
-| Pergunta                                               | Tabela                  | Estrutura aplicada  Visualização               |
+| Pergunta                                               | Tabela                  | Visualização               |
 |--------------------------------------------------------|-------------------------|------------------------------------------------|
 | Qual órgão julgador concentra os processos mais caros? | `base_analitica`        | Barras horizontais por órgão                   |
 | Qual procurador tem maior volume diário?               | `performance_procurador` | Barras empilhadas                              |
@@ -179,7 +177,7 @@ Abaixo estão algumas visualizações geradas a partir dos dados processados pel
 | Classes Triadas                 | ![Classes Triadas](images/grafico-classes-triadas.png)        |
 | Polo                            | ![Polo](images/grafico-polo-processual.png)                   |
 | Distribuição por UF             | ![Mapa de calor UFs](images/grafico-mapa-calor-processos.png) |
-| Matérias mais recorrentes       | ![Matérias](images/materias-recorrentes.png)                  |
+| Matérias mais recorrentes       | ![Matérias](images/grafico-materias-recorrentes.png)          |
 
 ---
 
