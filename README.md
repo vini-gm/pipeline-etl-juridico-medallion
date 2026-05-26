@@ -170,14 +170,14 @@ Visualização interativa dos relatórios gerados pelo pipeline:
 
 Abaixo estão algumas visualizações geradas a partir dos dados processados pelo pipeline:
 
-| Gráfico                         | Visualização                                                  |
-|---------------------------------|---------------------------------------------------------------|
-| Processos Diários               | ![Processos Diários](images/grafico-processos-diarios.png)    |
-| Órgãos com processos mais caros | ![Órgãos mais caros](images/grafico-orgao-julgador-valor.png) |
-| Classes Triadas                 | ![Classes Triadas](images/grafico-classes-triadas.png)        |
-| Polo                            | ![Polo](images/grafico-polo-processual.png)                   |
-| Distribuição por UF             | ![Mapa de calor UFs](images/grafico-mapa-calor-processos.png) |
-| Matérias mais recorrentes       | ![Matérias](images/grafico-materias-recorrentes.png)          |
+| Gráfico                       | Visualização                                                  |
+|-------------------------------|---------------------------------------------------------------|
+| Processos Diários             | ![Processos Diários](images/grafico-processos-diarios.png)    |
+| Concentração por Órgão        | ![Órgãos mais caros](images/grafico-orgao-julgador-valor.png) |
+| Classes Processuais           | ![Classes Triadas](images/grafico-classes-triadas.png)        |
+| Polo Processual Institucional | ![Polo](images/grafico-polo-processual.png)                   |
+| Distribuição por Geográfica   | ![Mapa de calor UFs](images/grafico-mapa-calor-processos.png) |
+| Matérias mais recorrentes     | ![Matérias](images/grafico-materias-recorrentes.png)          |
 
 ---
 
