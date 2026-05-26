@@ -4,3 +4,4 @@ faker
 loguru
 pyarrow
 pytest
+pandera

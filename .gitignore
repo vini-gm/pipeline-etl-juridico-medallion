@@ -8,3 +8,5 @@ env/
 data/bronze/
 data/silver/
 data/gold/
+
+logs/
