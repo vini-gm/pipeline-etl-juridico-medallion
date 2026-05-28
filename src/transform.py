@@ -3,8 +3,6 @@ import numpy as np
 from loguru import logger
 
 class DataTransformer:
-    """Responsável unicamente pela transformação e modelagem dos dados."""
-
     def __init__(self, df_bruto: pd.DataFrame, mapa_orgaos: dict):
         self.df_base = df_bruto.copy()
         self.mapa_orgaos = mapa_orgaos
@@ -42,9 +40,11 @@ class DataTransformer:
         df['Data da Extração'] = pd.to_datetime(df['Data da Extração'], dayfirst=True, errors='coerce')
 
     def _gerar_calendario(self) -> None:
-        """Gera calendário de dias úteis baseado nas datas encontradas"""
         datas = self.df_base['Data da Extração'].dropna()
-        if datas.empty: return
+        if datas.empty:
+            logger.warning("Falha crítica ao gerar calendário: Nenhuma data válida encontrada (NaT). Gerando fallback vazio.")
+            self.calendario_dias_uteis = pd.DataFrame(columns=['Data'])
+            return
 
         dt_range = pd.date_range(start=datas.min(), end=datas.max(), freq='B')
         self.calendario_dias_uteis = pd.DataFrame({'Data': dt_range})
@@ -87,10 +87,6 @@ class DataTransformer:
         self.resultados['dim_materias'] = df_final
 
     def gerar_dim_regionalizacao_uf(self) -> None:
-        """
-        Gera tabela unificada de UFs.
-        Técnica: Melt (Unpivot - Transforma colunas UF1/UF2 em linhas).
-        """
         logger.debug("Gerando tabela dimensional de UFs...")
         df_uf_em_linhas = self.df_base.melt(
             id_vars=['Data da Extração', 'Número', 'Valor da causa'],
@@ -101,7 +97,6 @@ class DataTransformer:
         self.resultados['dim_regionalizacao_uf'] = df_final
 
     def gerar_dim_polo(self) -> None:
-        """Gera tabela filtrada apenas para Polos Relevantes"""
         logger.debug("Gerando tabela de Polo...")
         df = self.df_base.copy()
         filtro_polo = df['Polo'].str.upper().isin(['AUTOR', 'RÉU'])
@@ -111,7 +106,7 @@ class DataTransformer:
     def gerar_performance_procurador(self) -> None:
         logger.debug("Calculando performance (com dias zerados)...")
         df = self.df_base.dropna(subset=['Data da Extração'])
-
+        self.resultados['performance_procurador'] = pd.DataFrame()
         df_agg = df.groupby(['Data da Extração', 'Procurador Responsável']).size().reset_index(name='Qtd_Processos')
         if not self.calendario_dias_uteis.empty:
             procuradores = pd.DataFrame({'Procurador Responsável': df['Procurador Responsável'].unique()})
@@ -138,8 +133,6 @@ class DataTransformer:
         self.resultados['base_analitica'] = df_final
 
     def executar_transformacoes(self) -> dict:
-        """Orquestra a execução de todas as transformações."""
-        #self.transformar_e_limpar_dados()
         self._gerar_calendario()
         self.gerar_base_analitica()
         self.gerar_performance_procurador()

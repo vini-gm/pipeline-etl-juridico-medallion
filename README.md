@@ -1,4 +1,4 @@
-# ⚖️ Pipeline de ETL Jurídico
+    # ⚖️ Pipeline de ETL Jurídico
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas&logoColor=white)
 ![Pandera](https://img.shields.io/badge/Pandera-Validation-E26F25?logo=pandas&logoColor=white)
@@ -47,8 +47,8 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/vini-gm/pipeline-etl-juridico-replica-v1.git
-   cd pipeline-etl-juridico-replica-v1  
+   git clone https://github.com/vini-gm/pipeline-etl-juridico-medallion.git
+   cd pipeline-etl-juridico-medallion  
    ```
 2. **Instale as dependências**
    ```bash
@@ -103,7 +103,7 @@ O pipeline gera os seguintes arquivos na pasta `data/gold/`, modelados para cons
 ---
 ## 📁 Estrutura do Projeto
 ``` graph
-pipeline-juridico-v1/
+pipeline-etl-juridico-medallion/
 ├── src/
 │   ├── __init__.py
 │   ├── extractor.py         # Responsável pelo I/O de entrada e validação com Pandera

@@ -1,11 +1,10 @@
 import pandas as pd
 from pathlib import Path
 from loguru import logger
-from schemas import schema_bronze
+from src.schemas import schema_bronze
 import pandera as pa
 
 class DataExtractor:
-    """Responsável unicamente pela extração/leitura dos dados brutos."""
     def __init__(self, caminho_entrada: Path):
         self.caminho_entrada = caminho_entrada
 

@@ -1,8 +1,8 @@
 from pathlib import Path
 from loguru import logger
-from extractor import DataExtractor
-from transform import DataTransformer
-from load import DataLoader
+from src.extractor import DataExtractor
+from src.transform import DataTransformer
+from src.load import DataLoader
 
 # Configurações de pastas e logs
 Path("logs").mkdir(exist_ok=True)

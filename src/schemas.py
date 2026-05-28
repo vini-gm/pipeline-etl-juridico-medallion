@@ -1,6 +1,5 @@
 import pandera as pa
 
-# Definimos o que ESPERAMOS do arquivo "dados_brutos_simulados.csv"
 schema_bronze = pa.DataFrameSchema({
     "Número": pa.Column(str, required=True),
     "Data da Extração": pa.Column(str, required=True),

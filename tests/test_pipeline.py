@@ -24,7 +24,6 @@ def transformer_vazio():
     return DataTransformer(df_vazio, MAPA_ORGAOS_TESTE)
 
 def test_conversao_valor(transformer_vazio):
-    # Preparamos o dado bruto simulando a Camada Bronze
     transformer_vazio.df_base = pd.DataFrame({
         "Valor da causa": ["R$ 1.000,00", "R$ 2.500,50\nR$ 2.600,00"],
         "Órgão Julgador": ["1T", "CE"],
@@ -34,7 +33,6 @@ def test_conversao_valor(transformer_vazio):
         "Data da Extração": ["01/05/2026", "02/05/2026"]
     })
 
-    # Executa a limpeza da camada Silver
     transformer_vazio.transformar_e_limpar_dados()
 
     assert transformer_vazio.df_base.loc[0, 'Valor da causa'] == 1000.0

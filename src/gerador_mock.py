@@ -1,26 +1,3 @@
-"""
-Classes:
-    As classes de processos da Fazenda Pública abrangem ações envolvendo entes públicos
-    (União, Estados, Municípios, autarquias) no polo ativo ou passivo, organizadas pelas
-    Tabelas Processuais Unificadas (TPUs) do CNJ. As principais incluem Ação de Procedimento
-    Comum, Execução Fiscal, Mandado de Segurança, Ação Civil Pública e Cumprimento de Sentença
-    contra a Fazenda Pública
-
-    - Principais Classes Processuais (Tabelas Unificadas):
-        Execução Fiscal: Ações para cobrança de débitos tributários e não tributários (Federal,
-                        Estadual, Municipal).
-        Execução contra a Fazenda Pública (EFP): Processo para cobrar valores devidos pelo Estado.
-        Mandado de Segurança: Ação para proteger direito líquido e certo contra ilegalidade de
-                        autoridade pública.
-        Ação de Procedimento Comum: Ações cíveis gerais (cobrança, indenização) contra ou movidas pela Fazenda.
-        Juizado Especial da Fazenda Pública: Processos de menor complexidade e valor (até 60 salários mínimos)
-                        contra Estados/Municípios.
-        Ação Civil Pública: Defesa de interesses difusos ou coletivos.
-        Cumprimento de Sentença (Classe 156): Execução individual derivada de ações coletivas.
-
-Códigos e Matérias:
-
-"""
 import csv
 import pandas as pd
 from faker import Faker
@@ -64,7 +41,7 @@ pesos_mensais = {
     2: 0.3,   # fevereiro
     7: 0.4,   # julho
     8: 0.4,   # agosto
-    12: 0.5   # dezembro (opcional)
+    12: 0.5   # dezembro
 }
 pesos_dias = [pesos_mensais.get(int(dia[3:5]), 1.0) for dia in dias_uteis]
 
@@ -99,10 +76,6 @@ def gerar_uf_suja():
     return uf1
 
 def gerar_orgao_variado():
-    """
-    Gera variações para testar o mapa de normalização.
-    Mistura siglas ('1T') com nomes extensos ('Primeira Turma').
-    """
     mapa_orgaos = [
         '1T', 'T1', '1ª Turma', 'PRIMEIRA TURMA', 'PRIMEIRATURMA',
         '2T', 'T2', '2ª Turma', 'SEGUNDA TURMA', 'SEGUNDATURMA',
@@ -174,11 +147,9 @@ def main():
             for i in range(duracao):
                 dia = inicio + timedelta(days=i)
                 dia_str = dia.strftime('%d/%m/%Y')
-                if dia_str in dias_uteis_set:  # só marca ausência em dia útil
+                if dia_str in dias_uteis_set:
                     afastamentos_set[procurador].add(dia_str)
 
-
-    # Primeiro, geramos todos os dados básicos (sem procurador) e agrupamos por data
     grupos_por_data = defaultdict(list)
     for _ in range(QTD_REGISTROS):
         proc = gerar_processo("")
@@ -205,6 +176,5 @@ def main():
 if __name__ == "__main__":
     random.seed(42)
     Faker.seed(42)
-    fake = Faker('pt_BR')
 
     main()
