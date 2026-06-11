@@ -1,4 +1,4 @@
-    # ⚖️ Pipeline de ETL Jurídico
+# ⚖️ Pipeline de ETL Jurídico
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas&logoColor=white)
 ![Pandera](https://img.shields.io/badge/Pandera-Validation-E26F25?logo=pandas&logoColor=white)
@@ -20,8 +20,8 @@ Este projeto foi desenvolvido sob princípios Engenharia de Software (SOLID) par
 A partir de dados sintéticos que reproduzem a complexidade e a "sujeira" de relatórios jurídicos reais, o pipeline executa de forma isolada:
 
 - Ingestão e Validação Contratual (**Bronze**): Carga dos dados e validação de tipos/restrições em runtime com **Pandera**.
-- Limpeza, padronização e persistência (**Silver**): Tratamento de quebras de linha textuais, conversão in-place de moedas, tratamento de nulos e salvamento em formato colunar parquet.
-- Modelagem Dimensional (**Gold**): Construção automatizada de um modelo híbrido (**OBT + Star Schema**) exportando agregações analíticas simultaneamente em CSV (para consumo direto no Looker Studio) e Parquet (para Big Data).
+  - Limpeza, padronização e persistência (**Silver**): Tratamento de quebras de linha textuais, conversão in-place de moedas, tratamento de nulos e salvamento em formato colunar parquet.
+  - Modelagem Dimensional (**Gold**): Construção automatizada de um modelo híbrido (**OBT + Star Schema**) exportando agregações analíticas simultaneamente em CSV (para consumo direto no Looker Studio) e Parquet (para Big Data).
 
 Os arquivos finais são exportados nos formatos **CSV** e **Parquet**, prontos para consumo no **Data Studio** ou **Power BI**.
 
@@ -33,14 +33,14 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
 
 ## 🛠️ Tecnologias Utilizadas
 - **Python 3.11+**
-- **Pandas & Numpy:** Para manipulação de dados de alta performance (Vectorization).
-- **Faker:** Para geração de dados sintéticos realistas em pt-BR
-- **Pandera:** Validação rigorosa do esquema de dados (Schema Enforcement) na camada de entrada.
-- **Loguru:** Para observabilidade e logs estruturados do pipeline
-- **Docker:** Conteinerização do pipeline para execução isolada
-- **Pytest:** Testes unitários automatizados das transformações
-- **Docker & Docker Compose:** Conteinerização completa do ambiente para execução reproduzível.
-- **Parquet:** Formato colunar para armazenamento eficiente
+  - **Pandas & Numpy:** Para manipulação de dados de alta performance (Vectorization).
+  - **Faker:** Para geração de dados sintéticos realistas em pt-BR
+  - **Pandera:** Validação rigorosa do esquema de dados (Schema Enforcement) na camada de entrada.
+  - **Loguru:** Para observabilidade e logs estruturados do pipeline
+  - **Docker:** Conteinerização do pipeline para execução isolada
+  - **Pytest:** Testes unitários automatizados das transformações
+  - **Docker & Docker Compose:** Conteinerização completa do ambiente para execução reproduzível.
+  - **Parquet:** Formato colunar para armazenamento eficiente
 ---
 
 ## 🚀 Como Executar
@@ -50,23 +50,23 @@ Os dados são gerados sinteticamente pelo script `gerador_mock.py` utilizando se
    git clone https://github.com/vini-gm/pipeline-etl-juridico-medallion.git
    cd pipeline-etl-juridico-medallion  
    ```
-2. **Instale as dependências**
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Execução Local (Sem Docker)**:
-   - **Gere os dados simulados (Mock)**
-     ```bash
-      python src/gerador_mock.py
-     ```
-   - **Rode o Pipeline de ETL**
-     ```bash
-      python src/pipeline_etl.py
-     ```
-4. **Execução Isolada (Com Docker)**:
-    ```bash 
-    docker compose up --build  
-    ```
+   2. **Instale as dependências**
+      ```bash
+      pip install -r requirements.txt
+      ```
+   3. **Execução Local (Sem Docker)**:
+      - **Gere os dados simulados (Mock)**
+        ```bash
+         python src/gerador_mock.py
+        ```
+      - **Rode o Pipeline de ETL**
+        ```bash
+         python src/pipeline_etl.py
+        ```
+   4. **Execução Isolada (Com Docker)**:
+       ```bash 
+       docker compose up --build  
+       ```
 ---
 
 ## 🎯 Objetivos
@@ -94,11 +94,11 @@ O pipeline gera os seguintes arquivos na pasta `data/gold/`, modelados para cons
 ### 2. Tabelas Dimensionais & Agregadas
 * **`performance_procurador.csv / .parquet`**: produtividade diária por procurador.
     * **Cross Join** entre calendário de dias úteis e lista de procuradores garante que dias com zero processos apareçam nos gráficos temporais.
-* **`dim_materias.csv / .parquet`**: granularidade por matéria jurídica.
-    * Uso de **`explode()`** para transformar listas de códigos separados por  quebra de linha `\n` e recombinação de código com assunto.
-* **`dim_regionalizacao_uf.csv / .parquet`**: Normalização geográfica.
-    * Uso de **`melt()`** para transformar colunas de múltiplos estados (`UF_1`, `UF_2`) em uma estrutura vertical para mapas de calor.
-* **`dim_polo.csv / .parquet`**: Processos onde a Procuradoria atua como Autor ou Réu.
+  * **`dim_materias.csv / .parquet`**: granularidade por matéria jurídica.
+      * Uso de **`explode()`** para transformar listas de códigos separados por  quebra de linha `\n` e recombinação de código com assunto.
+  * **`dim_regionalizacao_uf.csv / .parquet`**: Normalização geográfica.
+      * Uso de **`melt()`** para transformar colunas de múltiplos estados (`UF_1`, `UF_2`) em uma estrutura vertical para mapas de calor.
+  * **`dim_polo.csv / .parquet`**: Processos onde a Procuradoria atua como Autor ou Réu.
 
 ---
 ## 📁 Estrutura do Projeto
@@ -160,7 +160,7 @@ pipeline-etl-juridico-medallion/
 O pipeline adota uma estratégia mista para otimizar o consumo no Data Studio:
 
 - A **tabela fato** (`base_analitica`) armazena os atributos mais mais comuns de forma desnormalizada, agilizando consultas na visão principal e evitando JOINS pesados em runtime.
-- As **dimensões** (`dim_materias`, `dim_regionalizacao_uf`, `dim_polo`) são geradas separadamente para tratar particularidades de relacionamentos 1:N com granularidades expandidas.
+  - As **dimensões** (`dim_materias`, `dim_regionalizacao_uf`, `dim_polo`) são geradas separadamente para tratar particularidades de relacionamentos 1:N com granularidades expandidas.
 
 Dessa forma, unimos a simplicidade de uma **One Big Table (OBT)** para a visão principal e a flexibilidade do **Star Schema** para os detalhamentos, sem sobrecarregar o dashboard com relacionamentos complexos.
 
@@ -184,9 +184,9 @@ Abaixo estão algumas visualizações geradas a partir dos dados processados pel
 ## 🧪 Testes
 Os testes unitários cobrem as principais transformações do pipeline:
 - Conversão monetária tolerante a falhas (Múltiplas strings textuais $\rightarrow$ Float)
-- Padronização de órgãos julgadores via Regex aproximado
-- Resolução e pareamento de listas aninhadas de matérias e assuntos
-Execute com:
+  - Padronização de órgãos julgadores via Regex aproximado
+  - Resolução e pareamento de listas aninhadas de matérias e assuntos
+  Execute com:
 ```bash
     python -m pytest tests/ -v
 ```
@@ -195,5 +195,5 @@ Execute com:
 ## 🚧 Extensões Futuras
 
 - Orquestração com Apache Airflow para execução agendada
-- Migração da camada Gold para um Data Warehouse (PostgreSQL/BigQuery)
-- CI/CD com GitHub Actions para build automatizado do Docker e testes
+  - Migração da camada Gold para um Data Warehouse (PostgreSQL/BigQuery)
+  - CI/CD com GitHub Actions para build automatizado do Docker e testes
